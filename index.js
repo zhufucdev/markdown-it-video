@@ -1,5 +1,6 @@
 // Process @[youtube](youtubeVideoID)
 // Process @[vimeo](vimeoVideoID)
+// Process @[vine](vineVideoID)
 
 'use strict';
 
@@ -25,6 +26,16 @@ function vimeo_parser(url){
     }
 }
 
+function vine_parser(url){
+    var regExp = /^.*(vine\.co\/)v\/([a-zA-Z0-9]{1,13}).*/;
+    var match = url.match(regExp);
+    if (match){
+        return match[2];
+    } else{
+        return url;
+    }
+}
+
 function video_embed(md) {
     function video_return(state, silent) {
         var code,
@@ -39,8 +50,7 @@ function video_embed(md) {
             oldPos = state.pos,
             max = state.posMax;
 
-        // When we add more services, (youtube) might be (youtube|vimeo|vine), for example
-        var EMBED_REGEX = /@\[(youtube|vimeo)\]\([\s]*(.*?)[\s]*[\)]/im;
+        var EMBED_REGEX = /@\[(youtube|vimeo|vine)\]\([\s]*(.*?)[\s]*[\)]/im;
 
 
         if (state.src.charCodeAt(state.pos) !== 0x40/* @ */) {
@@ -67,6 +77,8 @@ function video_embed(md) {
             videoID = youtube_parser(videoID);
         } else if (service.toLowerCase() == 'vimeo') {
             videoID = vimeo_parser(videoID);
+        } else if (service.toLowerCase() == 'vine') {
+            videoID = vine_parser(videoID);
         }
 
         // If the videoID field is empty, regex currently make it the close parenthesis.
@@ -119,6 +131,12 @@ function tokenize_vimeo(videoID) {
     return embedStart + videoID + embedEnd;
 }
 
+function tokenize_vine(videoID) {
+    var embedStart = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vineplayer" width="500" height="281" src="https://vine.co/v/';
+    var embedEnd = '/embed/simple" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+    return embedStart + videoID + embedEnd;
+}
+
 function tokenize_video(md) {
     function tokenize_return(tokens, idx, options, env, self) {
         var videoID = md.utils.escapeHtml(tokens[idx].videoID);
@@ -131,6 +149,8 @@ function tokenize_video(md) {
             return tokenize_youtube(videoID);
         } else if (service.toLowerCase() === 'vimeo') {
             return tokenize_vimeo(videoID);
+        } else if (service.toLowerCase() === 'vine') {
+            return tokenize_vine(videoID);
         } else{
             return('');
         }

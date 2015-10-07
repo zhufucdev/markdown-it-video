@@ -48,3 +48,4 @@ Alternately, you could use a number of different YouTube URL formats rather than
 ## Currently supported services
  * YouTube
  * Vimeo
+ * Vine
