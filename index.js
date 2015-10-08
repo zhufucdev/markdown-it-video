@@ -119,40 +119,31 @@ function video_embed(md) {
     return video_return;
 }
 
-function tokenize_youtube(videoID) {
-    var embedStart = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/';
-    var embedEnd = '" frameborder="0"></iframe></div>';
-    return embedStart + videoID + embedEnd;
+function video_url(service, videoID, options) {
+    switch (service) {
+        case 'youtube':
+            return '//www.youtube.com/embed/' + videoID;
+        case 'vimeo':
+            return '//player.vimeo.com/video/' + videoID;
+        case 'vine':
+            return '//vine.co/v/' + videoID + '/embed/' + options.vine.embed;
+    }
 }
 
-function tokenize_vimeo(videoID) {
-    var embedStart = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/';
-    var embedEnd = '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
-    return embedStart + videoID + embedEnd;
-}
-
-function tokenize_vine(videoID) {
-    var embedStart = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vineplayer" width="500" height="281" src="https://vine.co/v/';
-    var embedEnd = '/embed/simple" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
-    return embedStart + videoID + embedEnd;
-}
-
-function tokenize_video(md) {
-    function tokenize_return(tokens, idx, options, env, self) {
+function tokenize_video(md, options) {
+    function tokenize_return(tokens, idx, mdopts, env, self) {
         var videoID = md.utils.escapeHtml(tokens[idx].videoID);
-        var service = md.utils.escapeHtml(tokens[idx].service);
+        var service = md.utils.escapeHtml(tokens[idx].service).toLowerCase();
         if (videoID === '') {
             return '';
         }
 
-        if (service.toLowerCase() === 'youtube') {
-            return tokenize_youtube(videoID);
-        } else if (service.toLowerCase() === 'vimeo') {
-            return tokenize_vimeo(videoID);
-        } else if (service.toLowerCase() === 'vine') {
-            return tokenize_vine(videoID);
-        } else{
-            return('');
+        switch (service) {
+            case 'youtube':
+            case 'vimeo':
+            case 'vine':
+                return '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' + service + 'player" width="' + (options[service].width) + '" height="' + (options[service].height) + '" src="' + options.url(service, videoID, options) + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+            default: return '';
         }
 
     }
@@ -160,7 +151,21 @@ function tokenize_video(md) {
     return tokenize_return;
 }
 
-module.exports = function video_plugin(md) {
-    md.renderer.rules.video = tokenize_video(md);
+var defaults = {
+    url: video_url,
+    youtube: { width: 640, height: 390 },
+    vimeo: { width: 500, height: 281 },
+    vine: { width: 600, height: 600, embed: 'simple' }
+}
+
+module.exports = function video_plugin(md, options) {
+    if (options) {
+        Object.keys(defaults).forEach(function(key) {
+            if (typeof options[key] === 'undefined') {
+                options[key] = defaults[key];
+            }
+        })
+    } else options = defaults;
+    md.renderer.rules.video = tokenize_video(md, options);
     md.inline.ruler.before('emphasis', 'video', video_embed(md));
 }
