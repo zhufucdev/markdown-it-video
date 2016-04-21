@@ -36,6 +36,8 @@ function vine_parser(url){
     }
 }
 
+var EMBED_REGEX = /@\[(youtube|vimeo|vine)\]\([\s]*(.*?)[\s]*[\)]/im;
+
 function video_embed(md) {
     function video_return(state, silent) {
         var code,
@@ -49,9 +51,6 @@ function video_embed(md) {
             start,
             oldPos = state.pos,
             max = state.posMax;
-
-        var EMBED_REGEX = /@\[(youtube|vimeo|vine)\]\([\s]*(.*?)[\s]*[\)]/im;
-
 
         if (state.src.charCodeAt(state.pos) !== 0x40/* @ */) {
             return false;
@@ -111,7 +110,7 @@ function video_embed(md) {
             token.level = state.level;
         }
 
-        state.pos = state.pos + state.src.indexOf(')');
+        state.pos = state.pos + state.src.indexOf(')', state.pos);
         state.posMax = state.tokens.length;
         return true;
     }
