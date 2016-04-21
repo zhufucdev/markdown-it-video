@@ -142,7 +142,7 @@ function tokenize_video(md, options) {
             case 'youtube':
             case 'vimeo':
             case 'vine':
-                return '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' + service + 'player" width="' + (options[service].width) + '" height="' + (options[service].height) + '" src="' + options.url(service, videoID, options) + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                return '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' + service + 'player" type="text/html" width="' + (options[service].width) + '" height="' + (options[service].height) + '" src="' + options.url(service, videoID, options) + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
             default: return '';
         }
 
