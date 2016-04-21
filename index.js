@@ -4,36 +4,22 @@
 
 'use strict';
 
-// The youtube_parser is from http://stackoverflow.com/a/8260383
-function youtube_parser(url){
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    if (match&&match[7].length==11){
-        return match[7];
-    } else{
-        return url;
-    }
+var yt_regex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
+function youtube_parser (url) {
+  var match = url.match(yt_regex)
+  return match && match[7].length === 11 ? match[7] : url
 }
 
-// The vimeo_parser is from http://stackoverflow.com/a/13286930
-function vimeo_parser(url){
-    var regExp = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
-    var match = url.match(regExp);
-    if (match){
-        return match[3];
-    } else{
-        return url;
-    }
+var vimeo_regex = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
+function vimeo_parser (url) {
+  var match = url.match(vimeo_regex)
+  return match && typeof match[3] === 'string' ? match[3] : url
 }
 
-function vine_parser(url){
-    var regExp = /^.*(vine\.co\/)v\/([a-zA-Z0-9]{1,13}).*/;
-    var match = url.match(regExp);
-    if (match){
-        return match[2];
-    } else{
-        return url;
-    }
+var vine_regex = /^http(?:s?):\/\/(?:www\.)?vine\.co\/v\/([a-zA-Z0-9]{1,13}).*/
+function vine_parser (url) {
+  var match = url.match(vine_regex)
+  return match && match[1].length === 11 ? match[1] : url
 }
 
 var EMBED_REGEX = /@\[(youtube|vimeo|vine)\]\([\s]*(.*?)[\s]*[\)]/im;
