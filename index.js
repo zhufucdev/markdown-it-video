@@ -6,23 +6,23 @@
 
 var yt_regex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
 function youtube_parser (url) {
-  var match = url.match(yt_regex)
-  return match && match[7].length === 11 ? match[7] : url
+    var match = url.match(yt_regex)
+    return match && match[7].length === 11 ? match[7] : url
 }
 
 var vimeo_regex = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
 function vimeo_parser (url) {
-  var match = url.match(vimeo_regex)
-  return match && typeof match[3] === 'string' ? match[3] : url
+    var match = url.match(vimeo_regex)
+    return match && typeof match[3] === 'string' ? match[3] : url
 }
 
 var vine_regex = /^http(?:s?):\/\/(?:www\.)?vine\.co\/v\/([a-zA-Z0-9]{1,13}).*/
 function vine_parser (url) {
-  var match = url.match(vine_regex)
-  return match && match[1].length === 11 ? match[1] : url
+    var match = url.match(vine_regex)
+    return match && match[1].length === 11 ? match[1] : url
 }
 
-var EMBED_REGEX = /@\[(youtube|vimeo|vine)\]\([\s]*(.*?)[\s]*[\)]/im;
+var EMBED_REGEX = /@\[([a-zA-Z].+)\]\([\s]*(.*?)[\s]*[\)]/im;
 
 function video_embed(md) {
     function video_return(state, silent) {
@@ -122,14 +122,8 @@ function tokenize_video(md, options) {
         if (videoID === '') {
             return '';
         }
-
-        switch (service) {
-            case 'youtube':
-            case 'vimeo':
-            case 'vine':
-                return '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' + service + 'player" type="text/html" width="' + (options[service].width) + '" height="' + (options[service].height) + '" src="' + options.url(service, videoID, options) + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
-            default: return '';
-        }
+        
+        return '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' + service + 'player" type="text/html" width="' + (options[service].width) + '" height="' + (options[service].height) + '" src="' + options.url(service, videoID, options) + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
 
     }
 
