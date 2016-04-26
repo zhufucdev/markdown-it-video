@@ -6,25 +6,25 @@
 
 var yt_regex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
 function youtube_parser (url) {
-    var match = url.match(yt_regex)
-    return match && match[7].length === 11 ? match[7] : url
+    var match = url.match(yt_regex);
+    return match && match[7].length === 11 ? match[7] : url;
 }
 
 var vimeo_regex = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
 function vimeo_parser (url) {
-    var match = url.match(vimeo_regex)
-    return match && typeof match[3] === 'string' ? match[3] : url
+    var match = url.match(vimeo_regex);
+    return match && typeof match[3] === 'string' ? match[3] : url;
 }
 
 var vine_regex = /^http(?:s?):\/\/(?:www\.)?vine\.co\/v\/([a-zA-Z0-9]{1,13}).*/
 function vine_parser (url) {
-    var match = url.match(vine_regex)
-    return match && match[1].length === 11 ? match[1] : url
+    var match = url.match(vine_regex);
+    return match && match[1].length === 11 ? match[1] : url;
 }
 
 var EMBED_REGEX = /@\[([a-zA-Z].+)\]\([\s]*(.*?)[\s]*[\)]/im;
 
-function video_embed(md) {
+function video_embed(md, options) {
     function video_return(state, silent) {
         var code,
             serviceEnd,
@@ -47,14 +47,9 @@ function video_embed(md) {
 
         var match = EMBED_REGEX.exec(state.src);
 
-        if(!match){
+        if(!match || match.length < 3) {
             return false;
         }
-
-        if (match.length < 3){
-            return false;
-        }
-
 
         var service = match[1];
         var videoID = match[2];
@@ -64,6 +59,8 @@ function video_embed(md) {
             videoID = vimeo_parser(videoID);
         } else if (service.toLowerCase() == 'vine') {
             videoID = vine_parser(videoID);
+        } else if (!options[service]) {
+            return false;
         }
 
         // If the videoID field is empty, regex currently make it the close parenthesis.
@@ -122,7 +119,7 @@ function tokenize_video(md, options) {
         if (videoID === '') {
             return '';
         }
-        
+
         return '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' + service + 'player" type="text/html" width="' + (options[service].width) + '" height="' + (options[service].height) + '" src="' + options.url(service, videoID, options) + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
 
     }
@@ -146,5 +143,5 @@ module.exports = function video_plugin(md, options) {
         })
     } else options = defaults;
     md.renderer.rules.video = tokenize_video(md, options);
-    md.inline.ruler.before('emphasis', 'video', video_embed(md));
+    md.inline.ruler.before('emphasis', 'video', video_embed(md, options));
 }
