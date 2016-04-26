@@ -2,6 +2,8 @@
 
 > markdown-it plugin for embedding hosted videos.
 
+https://travis-ci.org/brianjgeiger/markdown-it-video.svg?branch=master
+
 ## Usage
 
 #### Enable plugin
