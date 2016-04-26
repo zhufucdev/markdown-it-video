@@ -209,6 +209,21 @@ Coverage. Vimeo from URL
 <p><div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="vimeoplayer" type="text/html" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
 .
 .
+@[vine](https://vine.co/v/MhQ2lvg29Un/embed)
+.
+<p><div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="vineplayer" type="text/html" width="600" height="600" src="//vine.co/v/MhQ2lvg29Un/embed/simple" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vine](https://vine.co/v/MhQ2lvg29Un)
+.
+<p><div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="vineplayer" type="text/html" width="600" height="600" src="//vine.co/v/MhQ2lvg29Un/embed/simple" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vine](MhQ2lvg29Un)
+.
+<p><div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="vineplayer" type="text/html" width="600" height="600" src="//vine.co/v/MhQ2lvg29Un/embed/simple" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
 Def Leppard ("Lets get rocked")
 @[youtube](https://youtu.be/BO1Nae_EBvQ)
 .
