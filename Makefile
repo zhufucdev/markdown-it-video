@@ -3,7 +3,7 @@ coverage:
 			istanbul cover node_modules/.bin/_mocha
 
 lint:
-				eslint --reset .
+			./node_modules/.bin/eslint --reset .
 
 test: lint
 			mocha
