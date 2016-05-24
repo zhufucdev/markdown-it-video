@@ -1,67 +1,4 @@
 {
-<<<<<<< HEAD
-  "_args": [
-    [
-      "markdown-it-video",
-      "/Users/jessenayak"
-    ]
-  ],
-  "_from": "markdown-it-video@latest",
-  "_id": "markdown-it-video@0.3.1",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/markdown-it-video",
-  "_nodeVersion": "5.6.0",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/markdown-it-video-0.3.1.tgz_1461782514574_0.63605592912063"
-  },
-  "_npmUser": {
-    "email": "bgeiger@pobox.com",
-    "name": "brianjgeiger"
-  },
-  "_npmVersion": "3.6.0",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": "markdown-it-video",
-    "raw": "markdown-it-video",
-    "rawSpec": "",
-    "scope": null,
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/markdown-it-video/-/markdown-it-video-0.3.1.tgz",
-  "_shasum": "2850324b304bba3b85eca7f8ec62b4817b2d0413",
-  "_shrinkwrap": null,
-  "_spec": "markdown-it-video",
-  "_where": "/Users/jessenayak",
-  "author": {
-    "name": "brianjgeiger"
-  },
-  "bugs": {
-    "url": "https://github.com/brianjgeiger/markdown-it-video/issues"
-  },
-  "dependencies": {},
-  "description": "Markdown-it plugin to embed a hosted videos",
-  "devDependencies": {
-    "coveralls": "^2.11.2",
-    "eslint": "^0.13.0",
-    "eslint-plugin-nodeca": "^1.0.3",
-    "istanbul": "^0.3.5",
-    "markdown-it": "^4.1.0",
-    "markdown-it-testgen": "^0.1.4",
-    "mocha": "^2.1.0"
-  },
-  "directories": {},
-  "dist": {
-    "shasum": "2850324b304bba3b85eca7f8ec62b4817b2d0413",
-    "tarball": "https://registry.npmjs.org/markdown-it-video/-/markdown-it-video-0.3.1.tgz"
-  },
-  "gitHead": "6a5c5fcce9a9ae2af8eb6cd3be2bed76d67fceaf",
-=======
   "name": "markdown-it-video",
   "version": "0.3.1",
   "description": "Markdown-it plugin to embed a hosted videos",
@@ -78,33 +15,11 @@
   "bugs": {
     "url": "https://github.com/brianjgeiger/markdown-it-video/issues"
   },
->>>>>>> 6a5c5fcce9a9ae2af8eb6cd3be2bed76d67fceaf
   "homepage": "https://github.com/brianjgeiger/markdown-it-video",
   "keywords": [
     "markdown-it",
     "markdown-it-plugin"
   ],
-<<<<<<< HEAD
-  "license": "MIT",
-  "main": "index.js",
-  "maintainers": [
-    {
-      "email": "bgeiger@pobox.com",
-      "name": "brianjgeiger"
-    }
-  ],
-  "name": "markdown-it-video",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brianjgeiger/markdown-it-video.git"
-  },
-  "scripts": {
-    "test": "make test"
-  },
-  "version": "0.3.1"
-=======
   "dependencies": {
   },
   "devDependencies": {
@@ -116,5 +31,4 @@
     "istanbul": "^0.3.5",
     "mocha": "^2.1.0"
   }
->>>>>>> 6a5c5fcce9a9ae2af8eb6cd3be2bed76d67fceaf
 }
