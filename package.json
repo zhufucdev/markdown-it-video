@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "_args": [
     [
       "markdown-it-video",
@@ -60,11 +61,30 @@
     "tarball": "https://registry.npmjs.org/markdown-it-video/-/markdown-it-video-0.3.1.tgz"
   },
   "gitHead": "6a5c5fcce9a9ae2af8eb6cd3be2bed76d67fceaf",
+=======
+  "name": "markdown-it-video",
+  "version": "0.3.1",
+  "description": "Markdown-it plugin to embed a hosted videos",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianjgeiger/markdown-it-video"
+  },
+  "author": "brianjgeiger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianjgeiger/markdown-it-video/issues"
+  },
+>>>>>>> 6a5c5fcce9a9ae2af8eb6cd3be2bed76d67fceaf
   "homepage": "https://github.com/brianjgeiger/markdown-it-video",
   "keywords": [
     "markdown-it",
     "markdown-it-plugin"
   ],
+<<<<<<< HEAD
   "license": "MIT",
   "main": "index.js",
   "maintainers": [
@@ -84,4 +104,17 @@
     "test": "make test"
   },
   "version": "0.3.1"
+=======
+  "dependencies": {
+  },
+  "devDependencies": {
+    "markdown-it": "^4.1.0",
+    "markdown-it-testgen": "^0.1.4",
+    "coveralls": "^2.11.2",
+    "eslint": "^0.13.0",
+    "eslint-plugin-nodeca": "^1.0.3",
+    "istanbul": "^0.3.5",
+    "mocha": "^2.1.0"
+  }
+>>>>>>> 6a5c5fcce9a9ae2af8eb6cd3be2bed76d67fceaf
 }
