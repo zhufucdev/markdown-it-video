@@ -1,6 +1,8 @@
 // Process @[youtube](youtubeVideoID)
 // Process @[vimeo](vimeoVideoID)
 // Process @[vine](vineVideoID)
+// Process @[prezi](preziID)
+
 
 'use strict';
 
@@ -22,6 +24,12 @@ var vine_regex = /^http(?:s?):\/\/(?:www\.)?vine\.co\/v\/([a-zA-Z0-9]{1,13}).*/;
 function vine_parser (url) {
   var match = url.match(vine_regex);
   return match && match[1].length === 11 ? match[1] : url;
+}
+
+var prezi_regex = /^https:\/\/prezi.com\/(.+?)\//;
+function prezi_parser(url){
+    var match = url.match(prezi_regex);
+    return match ? match[1] : url;
 }
 
 var EMBED_REGEX = /@\[([a-zA-Z].+)\]\([\s]*(.*?)[\s]*[\)]/im;
@@ -54,6 +62,8 @@ function video_embed(md, options) {
       videoID = vimeo_parser(videoID);
     } else if (serviceLower === 'vine') {
       videoID = vine_parser(videoID);
+    } else if (serviceLower === 'prezi') {
+      videoID = prezi_parser(videoID);
     } else if (!options[serviceLower]) {
       return false;
     }
@@ -99,6 +109,8 @@ function video_url(service, videoID, options) {
       return '//player.vimeo.com/video/' + videoID;
     case 'vine':
       return '//vine.co/v/' + videoID + '/embed/' + options.vine.embed;
+    case 'prezi':
+      return 'https://prezi.com/embed/' + videoID + '/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5N1lQVHkxSHFxazZ0UUNCRHloSXZROHh3PT0&amp;landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
   }
 }
 
@@ -121,7 +133,8 @@ var defaults = {
   url: video_url,
   youtube: { width: 640, height: 390 },
   vimeo: { width: 500, height: 281 },
-  vine: { width: 600, height: 600, embed: 'simple' }
+  vine: { width: 600, height: 600, embed: 'simple' },
+  prezi: { width: 550, height: 400 }
 };
 
 module.exports = function video_plugin(md, options) {
