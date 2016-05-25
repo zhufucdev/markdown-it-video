@@ -107,7 +107,7 @@ function tokenize_video(md, options) {
     var videoID = md.utils.escapeHtml(tokens[idx].videoID);
     var service = md.utils.escapeHtml(tokens[idx].service).toLowerCase();
     return videoID === '' ? '' :
-      '<div class="embed-responsive"><iframe class="embed-responsive-item embed-responsive-16by9" id="' +
+      '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="' +
       service + 'player" type="text/html" width="' + (options[service].width) +
       '" height="' + (options[service].height) +
       '" src="' + options.url(service, videoID, options) +
