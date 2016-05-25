@@ -27,9 +27,9 @@ function vine_parser (url) {
 }
 
 var prezi_regex = /^https:\/\/prezi.com\/(.+?)\//;
-function prezi_parser(url){
-    var match = url.match(prezi_regex);
-    return match ? match[1] : url;
+function prezi_parser(url) {
+  var match = url.match(prezi_regex);
+  return match ? match[1] : url;
 }
 
 var EMBED_REGEX = /@\[([a-zA-Z].+)\]\([\s]*(.*?)[\s]*[\)]/im;
@@ -110,7 +110,10 @@ function video_url(service, videoID, options) {
     case 'vine':
       return '//vine.co/v/' + videoID + '/embed/' + options.vine.embed;
     case 'prezi':
-      return 'https://prezi.com/embed/' + videoID + '/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5N1lQVHkxSHFxazZ0UUNCRHloSXZROHh3PT0&amp;landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
+      return 'https://prezi.com/embed/' + videoID +
+      '/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;' +
+      'landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5N1lQVHkxSHFxazZ0UUNCRHloSXZROHh3PT0&amp;' +
+      'landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
   }
 }
 
