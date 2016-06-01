@@ -26,7 +26,7 @@ function vine_parser (url) {
   return match && match[1].length === 11 ? match[1] : url;
 }
 
-var prezi_regex = /^https:\/\/prezi.com\/(.+?)\//;
+var prezi_regex = /^https:\/\/prezi.com\/(.[^/]+)/;
 function prezi_parser(url) {
   var match = url.match(prezi_regex);
   return match ? match[1] : url;
