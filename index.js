@@ -104,11 +104,11 @@ function video_embed(md, options) {
 function video_url(service, videoID, options) {
   switch (service) {
     case 'youtube':
-      return '//www.youtube.com/embed/' + videoID;
+      return 'https://www.youtube.com/embed/' + videoID;
     case 'vimeo':
-      return '//player.vimeo.com/video/' + videoID;
+      return 'https://player.vimeo.com/video/' + videoID;
     case 'vine':
-      return '//vine.co/v/' + videoID + '/embed/' + options.vine.embed;
+      return 'https://vine.co/v/' + videoID + '/embed/' + options.vine.embed;
     case 'prezi':
       return 'https://prezi.com/embed/' + videoID +
       '/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;' +
