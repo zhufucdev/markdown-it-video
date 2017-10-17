@@ -4,7 +4,7 @@
   "description": "Markdown-it plugin to embed a hosted videos",
   "main": "index.js",
   "scripts": {
-    "test": "eslint --reset . && mocha"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",

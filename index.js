@@ -29,7 +29,7 @@ function preziParser(url) {
   return match ? match[1] : url;
 }
 
-const EMBED_REGEX = /@\[([a-zA-Z].+)\]\([\s]*(.*?)[\s]*[)]/im;
+const EMBED_REGEX = /@\[([a-zA-Z].+)]\([\s]*(.*?)[\s]*[)]/im;
 
 function videoEmbed(md, options) {
   function videoReturn(state, silent) {
@@ -145,7 +145,7 @@ module.exports = function videoPlugin(md, options) {
   var theOptions = options;
   var theMd = md;
   if (theOptions) {
-    Object.keys(defaults).forEach(function (key) {
+    Object.keys(defaults).forEach(function checkForKeys(key) {
       if (typeof theOptions[key] === 'undefined') {
         theOptions[key] = defaults[key];
       }
