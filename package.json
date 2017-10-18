@@ -1,10 +1,10 @@
 {
   "name": "markdown-it-video",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Markdown-it plugin to embed a hosted videos",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "eslint --reset . && mocha"
   },
   "repository": {
     "type": "git",
@@ -23,12 +23,10 @@
   "dependencies": {
   },
   "devDependencies": {
-    "markdown-it": "^4.1.0",
-    "markdown-it-testgen": "^0.1.4",
-    "coveralls": "^2.11.2",
-    "eslint": "^0.13.0",
-    "eslint-plugin-nodeca": "^1.0.3",
-    "istanbul": "^0.3.5",
-    "mocha": "^2.1.0"
+    "markdown-it": "8.4.0",
+    "markdown-it-testgen": "0.1.4",
+    "eslint": "4.9.0",
+    "eslint-plugin-nodeca": "1.0.3",
+    "mocha": "4.0.1"
   }
 }

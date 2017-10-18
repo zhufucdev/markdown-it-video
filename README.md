@@ -20,10 +20,11 @@ var md = require('markdown-it')({
   prezi: { width: 550, height: 400 }
 }));
 ```
+#### Inline style
+
+This plugin is made to work in the inline style. If you'd like a block-style, you may be interested in https://github.com/rotorz/markdown-it-block-embed
 
 #### YouTube
-
-This only works in the inline style.
 
 ```md
 @[youtube](dQw4w9WgXcQ)
@@ -52,8 +53,6 @@ Alternately, you could use a number of different YouTube URL formats rather than
 
 #### Vimeo
 
-This only works in the inline style.
-
 ```md
 @[vimeo](19706846)
 ```
@@ -74,8 +73,6 @@ Alternately, you could use the url instead of just the video id.
 ```
 
 #### Vine
-
-This only works in the inline style.
 
 ```md
 @[vine](etVpwB7uHlw)
@@ -98,8 +95,6 @@ Alternately, you could use the url, or even the whole embed tag instead of just 
 ```
 
 #### Prezi
-
-This only works in the inline style.
 
 ```md
 @[prezi](1kkxdtlp4241)
