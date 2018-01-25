@@ -31,7 +31,7 @@ function preziParser(url) {
 }
 const mfrRegex = /^http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/render\?url=http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/([a-zA-Z0-9]{1,5})\/\?action=download%26mode=render/;
 function mfrParser(url) {
-  const match = url.exec(mfrRegex);
+  const match = url.match(mfrRegex);
   return match[1];
 }
 
