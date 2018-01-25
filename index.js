@@ -2,6 +2,7 @@
 // Process @[vimeo](vimeoVideoID)
 // Process @[vine](vineVideoID)
 // Process @[prezi](preziID)
+// Process @[mfr](guid)
 
 const ytRegex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
 function youtubeParser(url) {
@@ -28,6 +29,12 @@ function preziParser(url) {
   const match = url.match(preziRegex);
   return match ? match[1] : url;
 }
+const mfrRegex = /^http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/render\?url=http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/([a-zA-Z0-9]{1,5})\/\?action=download%26mode=render/;
+function mfrParser(url) {
+  const match = url.exec(mfrRegex);
+  return match[1];
+}
+
 
 const EMBED_REGEX = /@\[([a-zA-Z].+)]\([\s]*(.*?)[\s]*[)]/im;
 
@@ -63,6 +70,8 @@ function videoEmbed(md, options) {
       videoID = vineParser(videoID);
     } else if (serviceLower === 'prezi') {
       videoID = preziParser(videoID);
+    } else if (serviceLower === 'mfr') {
+      videoID = mfrParser(videoID);
     } else if (!options[serviceLower]) {
       return false;
     }
@@ -113,6 +122,8 @@ function videoUrl(service, videoID, options) {
         '/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;' +
         'landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5N1lQVHkxSHFxazZ0UUNCRHloSXZROHh3PT0&amp;' +
         'landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
+    case 'mfr':
+      return "https://mfr.osf.io/render?url=https://mfr.osf.io/" + videoID + "/?action=download%26mode=render"
     default:
       return service;
   }
