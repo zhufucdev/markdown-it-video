@@ -29,10 +29,10 @@ function preziParser(url) {
   const match = url.match(preziRegex);
   return match ? match[1] : url;
 }
-const mfrRegex = /^http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/render\?url=http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/([a-zA-Z0-9]{1,5})\/\?action=download%26mode=render/;
+const mfrRegex = /^http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/render\?url=http(?:s?):\/\/osf\.io\/([a-zA-Z0-9]{1,5})\/\?action=download/;
 function mfrParser(url) {
   const match = url.match(mfrRegex);
-  return match[1];
+  return match ? match[1] : url;
 }
 
 
@@ -123,7 +123,7 @@ function videoUrl(service, videoID, options) {
         'landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5N1lQVHkxSHFxazZ0UUNCRHloSXZROHh3PT0&amp;' +
         'landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
     case 'mfr':
-      return "https://mfr.osf.io/render?url=https://mfr.osf.io/" + videoID + "/?action=download%26mode=render"
+      return "https://mfr.osf.io/render?url=https://mfr.osf.io/" + videoID + "/?action=download"
     default:
       return service;
   }
@@ -150,6 +150,7 @@ const defaults = {
   vimeo: { width: 500, height: 281 },
   vine: { width: 600, height: 600, embed: 'simple' },
   prezi: { width: 550, height: 400 },
+  mfr: { width: 550, height: 400 },
 };
 
 module.exports = function videoPlugin(md, options) {
