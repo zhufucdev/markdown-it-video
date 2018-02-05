@@ -70,7 +70,7 @@ function videoEmbed(md, options) {
       videoID = vineParser(videoID);
     } else if (serviceLower === 'prezi') {
       videoID = preziParser(videoID);
-    } else if (serviceLower === 'mfr') {
+    } else if (serviceLower === 'file') {
       videoID = mfrParser(videoID);
     } else if (!options[serviceLower]) {
       return false;
