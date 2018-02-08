@@ -133,6 +133,15 @@ function tokenizeVideo(md, options) {
   function tokenizeReturn(tokens, idx) {
     const videoID = md.utils.escapeHtml(tokens[idx].videoID);
     const service = md.utils.escapeHtml(tokens[idx].service).toLowerCase();
+    console.log(service);
+    if(service === 'file'){
+      var num = Math.random() * 0x10000;
+      return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
+        'new mfr.Render("#' + num + '", "https://mfr.osf.io/render?url=' +
+        'https://osf.io/' + videoID + '/?action=download%26mode=render"); ' +
+      '</script>';
+    }
+
     return videoID === '' ? '' :
       '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item ' +
       service + '-player" type="text/html" width="' + (options[service].width) +
@@ -150,7 +159,7 @@ const defaults = {
   vimeo: { width: 500, height: 281 },
   vine: { width: 600, height: 600, embed: 'simple' },
   prezi: { width: 550, height: 400 },
-  mfr: { width: 550, height: 400 },
+  file: { width: '100%', height: '100%' },
 };
 
 module.exports = function videoPlugin(md, options) {
