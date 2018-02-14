@@ -45,7 +45,7 @@ function videoEmbed(md, options) {
       return false;
     }
 
-    const match = EMBED_REGEX.exec(state.src);
+    const match = EMBED_REGEX.exec(state.src.slice(state.pos, state.src.length));
 
     if (!match || match.length < 3) {
       return false;
