@@ -2,7 +2,7 @@
 // Process @[vimeo](vimeoVideoID)
 // Process @[vine](vineVideoID)
 // Process @[prezi](preziID)
-// Process @[mfr](guid)
+// Process @[file](guid)
 
 const ytRegex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
 function youtubeParser(url) {
@@ -36,7 +36,7 @@ function mfrParser(url) {
 }
 
 
-const EMBED_REGEX = /@\[([a-zA-Z].+)]\([\s]*(.*?)[\s]*[)]/im;
+const EMBED_REGEX = /@\[([a-zA-Z].+)]\([\s]*(.*?)[\s]*[)]/g;
 
 function videoEmbed(md, options) {
   function videoReturn(state, silent) {
@@ -133,13 +133,14 @@ function tokenizeVideo(md, options) {
   function tokenizeReturn(tokens, idx) {
     const videoID = md.utils.escapeHtml(tokens[idx].videoID);
     const service = md.utils.escapeHtml(tokens[idx].service).toLowerCase();
-    console.log(service);
-    if(service === 'file'){
-      var num = Math.random() * 0x10000;
+    var num;
+
+    if (service === 'file') {
+      num = Math.random() * 0x10000;
       return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
-        'new mfr.Render("#' + num + '", "https://mfr.osf.io/render?url=' +
-        'https://osf.io/' + videoID + '/?action=download%26mode=render"); ' +
-      '</script>';
+        '$(document).ready(function () {new mfr.Render("' + num + '", "https://mfr.osf.io/' +
+        'render?url=https://osf.io/' + videoID + '/?action=download%26mode=render");' +
+        '    }); </script>';
     }
 
     return videoID === '' ? '' :
