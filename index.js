@@ -36,7 +36,7 @@ function mfrParser(url) {
 }
 
 
-const EMBED_REGEX = /@\[([a-zA-Z].+)]\([\s]*(.*?)[\s]*[)]/g;
+const EMBED_REGEX = /@\[([a-zA-Z].+)]\([\s]*(.*?)[\s]*[)]/im;
 
 function videoEmbed(md, options) {
   function videoReturn(state, silent) {
@@ -51,8 +51,7 @@ function videoEmbed(md, options) {
         state.src.charCodeAt(oldPos + 1) !== 0x5B/* [ */) {
       return false;
     }
-
-    const match = EMBED_REGEX.exec(state.src);
+    const match = EMBED_REGEX.exec(state.src.slice(state.pos, state.src.length));
 
     if (!match || match.length < 3) {
       return false;
