@@ -1,6 +1,5 @@
 var path = require('path');
 var generate = require('markdown-it-testgen');
-var assert = require('assert');
 
 describe('markdown-it-video', function requireMarkdownIt() {
   var md = require('markdown-it')({
