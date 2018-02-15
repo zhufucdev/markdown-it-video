@@ -30,6 +30,7 @@ function preziParser(url) {
   return match ? match[1] : url;
 }
 
+// TODO: Write regex for staging and local servers.
 const mfrRegex = /^http(?:s?):\/\/(?:www\.)?mfr\.osf\.io\/render\?url=http(?:s?):\/\/osf\.io\/([a-zA-Z0-9]{1,5})\/\?action=download/;
 function mfrParser(url) {
   const match = url.match(mfrRegex);
@@ -135,7 +136,7 @@ function tokenizeVideo(md, options) {
     const service = md.utils.escapeHtml(tokens[idx].service).toLowerCase();
     var num;
 
-    if (service === 'osf') {
+    if (service === 'osf' && videoID) {
       num = Math.random() * 0x10000;
       return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
         '$(document).ready(function () {new mfr.Render("' + num + '", "https://mfr.osf.io/' +
@@ -160,7 +161,7 @@ const defaults = {
   vimeo: { width: 500, height: 281 },
   vine: { width: 600, height: 600, embed: 'simple' },
   prezi: { width: 550, height: 400 },
-  osf: { width: '100%', height: '100%' },
+  osf: { width: '100%', height: '100%' }
 };
 
 module.exports = function videoPlugin(md, options) {
