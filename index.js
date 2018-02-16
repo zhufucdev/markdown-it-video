@@ -124,7 +124,7 @@ function videoUrl(service, videoID, options) {
         'landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5N1lQVHkxSHFxazZ0UUNCRHloSXZROHh3PT0&amp;' +
         'landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
     case 'osf':
-      return "https://mfr.osf.io/render?url=https://osf.io/" + videoID + "/?action=download"
+      return 'https://mfr.osf.io/render?url=https://osf.io/' + videoID + '/?action=download';
     default:
       return service;
   }
@@ -161,7 +161,7 @@ const defaults = {
   vimeo: { width: 500, height: 281 },
   vine: { width: 600, height: 600, embed: 'simple' },
   prezi: { width: 550, height: 400 },
-  osf: { width: '100%', height: '100%' }
+  osf: { width: '100%', height: '100%' },
 };
 
 module.exports = function videoPlugin(md, options) {

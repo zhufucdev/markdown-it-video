@@ -1,12 +1,13 @@
+/* eslint func-names: ["error", "never"] */
 var path = require('path');
 var generate = require('markdown-it-testgen');
 var assert = require('assert');
 
-var getMfrId = function(html) {
+function getMfrId(html) {
   return html.split('"')[1];
 }
 
-describe('markdown-it-video', function requireMarkdownIt() {
+describe('markdown-it-video', function () {
   var md = require('markdown-it')({
     html: true,
     linkify: true,
@@ -17,7 +18,7 @@ describe('markdown-it-video', function requireMarkdownIt() {
 
 // Because the mfr iframe requires a random id these tests cannont be part of
 // the markdown-it-testgen fixture
-describe('markdown-it-mfr', function requireMarkdownIt() {
+describe('markdown-it-mfr', function () {
   var md = require('markdown-it')({
     html: true,
     linkify: true,
