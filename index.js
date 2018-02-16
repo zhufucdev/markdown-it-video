@@ -53,6 +53,7 @@ function videoEmbed(md, options) {
         state.src.charCodeAt(oldPos + 1) !== 0x5B/* [ */) {
       return false;
     }
+
     const match = EMBED_REGEX.exec(state.src.slice(state.pos, state.src.length));
 
     if (!match || match.length < 3) {
