@@ -114,6 +114,28 @@ Alternately, you could use the url.
 @[prezi](https://prezi.com/prg6t46qgzik/anatomy-of-a-social-powered-customer-service-win/)
 ```
 
+#### OSF
+
+This plugin allows you to use the OSF's Modualar File Renderer or the MFR to embed video or other files
+ into your markdown assuming your page has mfr.js and mfr.css loaded.
+
+```md
+@[osf](kuvg9)
+```
+
+is interpreted as
+
+```html
+<p><div id="randomid" class="mfr mfr-file"></div><script>$(document).ready(function () {new mfr.Render("randomid", "https://mfr.osf.io/render?url=https://osf.io/kuvg9/?action=download%26mode=render");    }); </script></p>
+```
+
+Alternately, you could use the url.
+
+```md
+@[osf](https://mfr.osf.io/render?url=https://osf.io/kuvg9/?action=download)
+```
+
+
 ## Options
 
 ```js
