@@ -139,9 +139,9 @@ function tokenizeVideo(md, options) {
 
     if (service === 'osf' && videoID) {
       num = Math.random() * 0x10000;
-      var check_url = /http(?:s?):\/\/(?:www\.)?[a-zA-Z0-9-:.]{1,}\/render(?:\/)?[a-zA-Z0-9.&;?=:%]{1,}url=http(?:s?):\/\/[a-zA-Z0-9 -:.]{1,}\/[a-zA-Z0-9]{1,5}\/\?[a-zA-Z0-9.=:%]{1,}/
+      var checkUrl = /http(?:s?):\/\/(?:www\.)?[a-zA-Z0-9-:.]{1,}\/render(?:\/)?[a-zA-Z0-9.&;?=:%]{1,}url=http(?:s?):\/\/[a-zA-Z0-9 -:.]{1,}\/[a-zA-Z0-9]{1,5}\/\?[a-zA-Z0-9.=:%]{1,}/
 
-      if (videoID.match(check_url)) {
+      if (videoID.match(checkUrl)) {
         return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
           '$(document).ready(function () {new mfr.Render("' + num + '", "' + videoID + '");' +
           '    }); </script>';
