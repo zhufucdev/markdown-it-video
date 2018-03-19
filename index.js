@@ -135,22 +135,21 @@ function tokenizeVideo(md, options) {
   function tokenizeReturn(tokens, idx) {
     const videoID = md.utils.escapeHtml(tokens[idx].videoID);
     const service = md.utils.escapeHtml(tokens[idx].service).toLowerCase();
+    var checkUrl = /http(?:s?):\/\/(?:www\.)?[a-zA-Z0-9-:.]{1,}\/render(?:\/)?[a-zA-Z0-9.&;?=:%]{1,}url=http(?:s?):\/\/[a-zA-Z0-9 -:.]{1,}\/[a-zA-Z0-9]{1,5}\/\?[a-zA-Z0-9.=:%]{1,}/;
     var num;
 
     if (service === 'osf' && videoID) {
       num = Math.random() * 0x10000;
-      var checkUrl = /http(?:s?):\/\/(?:www\.)?[a-zA-Z0-9-:.]{1,}\/render(?:\/)?[a-zA-Z0-9.&;?=:%]{1,}url=http(?:s?):\/\/[a-zA-Z0-9 -:.]{1,}\/[a-zA-Z0-9]{1,5}\/\?[a-zA-Z0-9.=:%]{1,}/
 
       if (videoID.match(checkUrl)) {
         return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
           '$(document).ready(function () {new mfr.Render("' + num + '", "' + videoID + '");' +
           '    }); </script>';
-      } else {
-        return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
-          '$(document).ready(function () {new mfr.Render("' + num + '", "https://mfr.osf.io/' +
-          'render?url=https://osf.io/' + videoID + '/?action=download%26mode=render");' +
-          '    }); </script>';
       }
+      return '<div id="' + num + '" class="mfr mfr-file"></div><script>' +
+        '$(document).ready(function () {new mfr.Render("' + num + '", "https://mfr.osf.io/' +
+        'render?url=https://osf.io/' + videoID + '/?action=download%26mode=render");' +
+        '    }); </script>';
     }
 
     return videoID === '' ? '' :
