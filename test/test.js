@@ -74,4 +74,22 @@ describe('markdown-it-mfr', function () {
     id = getMfrId(renderedHtml);
     assert.equal(renderedHtml, '<p><div id="' + id + '" class="mfr mfr-file"></div><script>$(document).ready(function () {new mfr.Render("' + id + '", "https://mfr.osf.io/render?url=https://osf.io/xxxxx/?action=download%26mode=render");    }); </script></p>\n');
   });
+
+  it('make sure normal iframe generates properly with link to staging', function () {
+    renderedHtml = md.render('@[osf](https://mfr-staging3.osf.io/render?url=https://staging3.osf.io/xxxxx/?action=download%26mode=render)');
+    id = getMfrId(renderedHtml);
+    assert.equal(renderedHtml, '<p><div id="' + id + '" class="mfr mfr-file"></div><script>$(document).ready(function () {new mfr.Render("' + id + '", "https://mfr-staging3.osf.io/render?url=https://staging3.osf.io/xxxxx/?action=download%26mode=render");    }); </script></p>\n');
+  });
+
+  it('make sure normal iframe generates properly with link to local', function () {
+    renderedHtml = md.render('@[osf](https://localhost:7778/render?url=https://localhost:5000/xxxxx/?action=download%26mode=render)');
+    id = getMfrId(renderedHtml);
+    assert.equal(renderedHtml, '<p><div id="' + id + '" class="mfr mfr-file"></div><script>$(document).ready(function () {new mfr.Render("' + id + '", "https://localhost:7778/render?url=https://localhost:5000/xxxxx/?action=download%26mode=render");    }); </script></p>\n');
+  });
+
+  it('make sure normal iframe generates properly with link to local ip', function () {
+    renderedHtml = md.render('@[osf](http://localhost:7778/render?mode=render&url=http://192.168.168.167:5000/y98tn/?action=download%26mode=render%26direct)');
+    id = getMfrId(renderedHtml);
+    assert.equal(renderedHtml, '<p><div id="' + id + '" class="mfr mfr-file"></div><script>$(document).ready(function () {new mfr.Render("' + id + '", "http://localhost:7778/render?mode=render&amp;url=http://192.168.168.167:5000/y98tn/?action=download%26mode=render%26direct");    }); </script></p>\n');
+  });
 });
