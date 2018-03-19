@@ -92,5 +92,4 @@ describe('markdown-it-mfr', function () {
     id = getMfrId(renderedHtml);
     assert.equal(renderedHtml, '<p><div id="' + id + '" class="mfr mfr-file"></div><script>$(document).ready(function () {new mfr.Render("' + id + '", "http://localhost:7778/render?mode=render&amp;url=http://192.168.168.167:5000/y98tn/?action=download%26mode=render%26direct");    }); </script></p>\n');
   });
-
 });
