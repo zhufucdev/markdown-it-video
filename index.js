@@ -92,7 +92,6 @@ function videoEmbed(md, options) {
     //
     if (!silent) {
       theState.pos = serviceStart;
-      theState.posMax = serviceEnd;
       theState.service = theState.src.slice(serviceStart, serviceEnd);
       const newState = new theState.md.inline.State(service, theState.md, theState.env, []);
       newState.md.inline.tokenize(newState);
@@ -104,7 +103,6 @@ function videoEmbed(md, options) {
     }
 
     theState.pos += theState.src.indexOf(')', theState.pos);
-    theState.posMax = theState.tokens.length;
     return true;
   }
 
