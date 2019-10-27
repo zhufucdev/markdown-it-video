@@ -135,9 +135,31 @@ Alternately, you could use the url.
 @[osf](https://mfr.osf.io/render?url=https://osf.io/kuvg9/?action=download)
 ```
 
-
 ## Options
 
 ```js
 
 ```
+
+#### YouTube
+
+###### nocookie
+
+Use https://youtube-nocookie.com instead of https://youtube.com for all embeds. This enables 'Privacy Enhanced Mode' as described at the corresponding [Google help page](https://support.google.com/youtube/answer/171780)
+
+###### parameters
+
+This option allows to add/overwrite embed parameters globally.
+Pass an object with parameter/value pairs to change the design and behavior of the YouTube player.
+For a list of valid parameters please refer to the [official documentation](https://developers.google.com/youtube/player_parameters#Parameters).
+
+Example:
+*Start playback at 10 seconds and disable displaying related videos.*
+
+```js
+{
+    rel: 0,
+    start: 10
+}
+```
+
