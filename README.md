@@ -49,6 +49,7 @@ Alternately, you could use a number of different YouTube URL formats rather than
 @[youtube](http://www.youtube.com/embed/dQw4w9WgXcQ?rel=0)
 @[youtube](http://www.youtube.com/watch?v=dQw4w9WgXcQ)
 @[youtube](http://youtu.be/dQw4w9WgXcQ)
+@[youtube](dQw4w9WgXcQ?rel=0)
 ```
 
 #### Vimeo
@@ -141,13 +142,22 @@ Alternately, you could use the url.
 
 ```
 
-#### YouTube
+### YouTube
 
-###### nocookie
+```js
+youtube: {
+  width: 640,
+  height: 390,
+  nocookie: false,
+  parameters: {}
+}
+```
+
+##### nocookie
 
 Use https://youtube-nocookie.com instead of https://youtube.com for all embeds. This enables 'Privacy Enhanced Mode' as described at the corresponding [Google help page](https://support.google.com/youtube/answer/171780)
 
-###### parameters
+##### parameters
 
 This option allows to add/overwrite embed parameters globally.
 Pass an object with parameter/value pairs to change the design and behavior of the YouTube player.
@@ -162,4 +172,3 @@ Example:
     start: 10
 }
 ```
-
