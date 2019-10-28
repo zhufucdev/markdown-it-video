@@ -143,7 +143,9 @@ function videoUrl(service, videoID, url, options) {
         let j = 0;
 
         while (timeParts.length > 0) {
-          startTime += Number(timeParts.pop()) * (60 ** j);
+          /* eslint-disable no-restricted-properties */
+          startTime += Number(timeParts.pop()) * Math.pow(60, j);
+          /* eslint-enable no-restricted-properties */
           j += 1;
         }
         parameters.set('start', startTime);
