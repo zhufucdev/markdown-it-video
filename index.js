@@ -129,8 +129,8 @@ function videoUrl(service, videoID, url, options) {
     case 'youtube': {
       const parameters = extractVideoParameters(url);
       if (options.youtube.parameters) {
-        Object.entries(options.youtube.parameters).forEach(([key, value]) => {
-          parameters.set(key, value);
+        Object.keys(options.youtube.parameters).forEach((key) => {
+          parameters.set(key, options.youtube.parameters[key]);
         });
       }
 
