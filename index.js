@@ -3,6 +3,7 @@
 // Process @[vine](vineVideoID)
 // Process @[prezi](preziID)
 // Process @[osf](guid)
+// Process @[bilibili](bvid)
 
 const ytRegex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
 function youtubeParser(url) {
@@ -22,6 +23,12 @@ const vineRegex = /^http(?:s?):\/\/(?:www\.)?vine\.co\/v\/([a-zA-Z0-9]{1,13}).*/
 function vineParser(url) {
   const match = url.match(vineRegex);
   return match && match[1].length === 11 ? match[1] : url;
+}
+
+const bilibiliRegex = /^http(?:s?):\/\/(?:www\.)?bilibili\.com\/video\/([a-zA-Z0-9]{1,12})*/;
+function bilibiliParser(url) {
+  const match = url.match(bilibiliRegex);
+  return match && match[1].length === 12 ? match[1] : url;
 }
 
 const preziRegex = /^https:\/\/prezi.com\/(.[^/]+)/;
@@ -74,6 +81,8 @@ function videoEmbed(md, options) {
       videoID = preziParser(videoID);
     } else if (serviceLower === 'osf') {
       videoID = mfrParser(videoID);
+    } else if (serviceLower === 'bilibili') {
+      videoID = bilibiliParser(videoID);
     } else if (!options[serviceLower]) {
       return false;
     }
@@ -176,6 +185,8 @@ function videoUrl(service, videoID, url, options) {
         'landing_sign=1kD6c0N6aYpMUS0wxnQjxzSqZlEB8qNFdxtdjYhwSuI';
     case 'osf':
       return 'https://mfr.osf.io/render?url=https://osf.io/' + videoID + '/?action=download';
+    case 'bilibili':
+      return 'https://player.bilibili.com/player.html?bvid=' + videoID;
     default:
       return service;
   }
