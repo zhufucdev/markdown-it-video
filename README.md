@@ -1,8 +1,7 @@
 # markdown-it-video
 
 > markdown-it plugin for embedding hosted videos.
-
-[![Build Status](https://travis-ci.org/CenterForOpenScience/markdown-it-video.svg?branch=master)](https://travis-ci.org/CenterForOpenScience/markdown-it-video)
+> edited for bilibili support.
 
 ## Usage
 

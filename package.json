@@ -1,5 +1,5 @@
 {
-  "name": "@centerforopenscience/markdown-it-video",
+  "name": "@zhufucdev/markdown-it-video",
   "version": "1.0.0",
   "description": "Markdown-it plugin to embed a hosted videos",
   "main": "index.js",
